@@ -59,7 +59,7 @@ module.exports = {
     open: true,
   },
   optimization: {
-    minimizer: [new CssMinimizerWebpackPlugin()],
+    minimizer: [new CssMinimizerWebpackPlugin(), "..."],
   },
   plugins: [
     new MiniCssExtractPlugin({
