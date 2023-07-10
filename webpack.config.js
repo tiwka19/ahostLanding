@@ -72,6 +72,7 @@ module.exports = {
     new FaviconsWebpackPlugin({
       logo: path.resolve(__dirname, "src/logo.png"),
       favicons: {
+        display: "browser",
         icons: {
           appleStartup: false,
           windows: false,
