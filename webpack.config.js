@@ -1,6 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const ESLintWebpackPlugin = require("eslint-webpack-plugin");
+// const ESLintWebpackPlugin = require("eslint-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerWebpackPlugin = require("css-minimizer-webpack-plugin");
 const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
@@ -26,7 +26,7 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: ESLintWebpackPlugin.loader,
+        // loader: ESLintWebpackPlugin.loader,
       },
       {
         test: /\.css$/,
@@ -70,7 +70,7 @@ module.exports = {
       template: "./src/index.html",
       inject: "body",
     }),
-    new ESLintWebpackPlugin({ fix: true }),
+    // new ESLintWebpackPlugin({ fix: true }),
     new FaviconsWebpackPlugin({
       logo: path.resolve(__dirname, "src/logo.png"),
       favicons: {

@@ -1,5 +1,24 @@
-import "../styles/style.css";
+import '../styles/style.css';
 
-const message = "Hello World!";
+import EmblaCarousel from 'embla-carousel';
+import AutoHeight from 'embla-carousel-auto-height';
 
-console.log(message);
+import { addDotBtnsAndClickHandlers } from './slider-dots.js';
+
+const emblaNode = document.querySelector('.embla');
+const viewportNode = emblaNode.querySelector('.embla__viewport');
+const dotsNode = document.querySelector('.embla__dots');
+
+let emblaApi = EmblaCarousel(viewportNode, { loop: true, containScroll: 'trimSnaps' });
+
+const removeDotBtnsAndClickHandlers = addDotBtnsAndClickHandlers(emblaApi, dotsNode);
+
+emblaApi.on('destroy', removeDotBtnsAndClickHandlers);
+
+const $collapseEl = document.querySelector('#navbar-collapse-with-animation');
+const $scrollSpyEl = document.querySelector('[data-hs-scrollspy="#scrollspy"]');
+$scrollSpyEl.addEventListener('scroll.hs.scrollspy', () => {
+  if (window.outerWidth <= 639 && $collapseEl.classList.contains('open')) {
+    HSCollapse.hide($collapseEl);
+  }
+});
