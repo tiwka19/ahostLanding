@@ -1,19 +1,26 @@
 import '../styles/style.css';
 import '../../node_modules/preline/dist/preline';
 import EmblaCarousel from 'embla-carousel';
-import AutoHeight from 'embla-carousel-auto-height';
+import { setupDotBtns, generateDotBtns, selectDotBtn } from './dotButtons';
 
-import { addDotBtnsAndClickHandlers } from './slider-dots.js';
+const setupEmblaCarousel = (emblaNode, options) => {
+  const viewPort = emblaNode.querySelector('.embla__viewport');
 
-const emblaNode = document.querySelector('.embla');
-const viewportNode = emblaNode.querySelector('.embla__viewport');
-const dotsNode = document.querySelector('.embla__dots');
+  const dots = emblaNode.querySelector('.embla__dots');
+  console.log(dots);
+  const embla = EmblaCarousel(viewPort, options);
+  const dotsArray = generateDotBtns(dots, embla);
+  const setSelectedDotBtn = selectDotBtn(dotsArray, embla);
 
-let emblaApi = EmblaCarousel(viewportNode, { loop: true, containScroll: 'trimSnaps' });
+  setupDotBtns(dotsArray, embla);
 
-const removeDotBtnsAndClickHandlers = addDotBtnsAndClickHandlers(emblaApi, dotsNode);
+  embla.on('select', setSelectedDotBtn);
+  embla.on('init', setSelectedDotBtn);
+};
 
-emblaApi.on('destroy', removeDotBtnsAndClickHandlers);
+const options = { loop: false };
+const emblaNodes = [].slice.call(document.querySelectorAll('.embla'));
+const emblaCarousels = emblaNodes.map((emblaNode) => setupEmblaCarousel(emblaNode, options));
 
 const $collapseEl = document.querySelector('#navbar-collapse-with-animation');
 const $scrollSpyEl = document.querySelector('[data-hs-scrollspy="#scrollspy"]');
