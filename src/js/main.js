@@ -1,5 +1,5 @@
 import '../styles/style.css';
-
+import '../../node_modules/preline/dist/preline';
 import EmblaCarousel from 'embla-carousel';
 import AutoHeight from 'embla-carousel-auto-height';
 
