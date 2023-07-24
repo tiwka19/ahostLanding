@@ -22,10 +22,12 @@ const options = { loop: false };
 const emblaNodes = [].slice.call(document.querySelectorAll('.embla'));
 const emblaCarousels = emblaNodes.map((emblaNode) => setupEmblaCarousel(emblaNode, options));
 
-const $collapseEl = document.querySelector('#navbar-collapse-with-animation');
-const $scrollSpyEl = document.querySelector('[data-hs-scrollspy="#scrollspy"]');
-$scrollSpyEl.addEventListener('scroll.hs.scrollspy', () => {
-  if (window.outerWidth <= 639 && $collapseEl.classList.contains('open')) {
-    HSCollapse.hide($collapseEl);
-  }
-});
+if (document.querySelector('.home')) {
+  const $collapseEl = document.querySelector('#navbar-collapse-with-animation');
+  const $scrollSpyEl = document.querySelector('[data-hs-scrollspy="#scrollspy"]');
+  $scrollSpyEl.addEventListener('scroll.hs.scrollspy', () => {
+    if (window.outerWidth <= 639 && $collapseEl.classList.contains('open')) {
+      HSCollapse.hide($collapseEl);
+    }
+  });
+}
